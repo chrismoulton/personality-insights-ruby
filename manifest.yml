@@ -1,0 +1,6 @@
+applications:
+- services:
+  - um-service
+  name: um-ruby
+  path: .
+  memory: 256M
