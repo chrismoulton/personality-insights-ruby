@@ -6,6 +6,6 @@
     <target name="build" depends="build-zip"/>
     <target name="cleanall" depends="clean"/>
     <target name="build-zip" depends="clean">
-    	<zip basedir="." destfile="webApp.zip" excludes="webApp.zip,build.xml" />
+    	<zip basedir="." destfile="output/webApp.zip" excludes="output/webApp.zip,build.xml" />
     </target>
 </project>
