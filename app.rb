@@ -17,10 +17,13 @@
 require 'sinatra'
 require 'json'
 require 'excon'
+require './config/i18n.rb'
 
 
 configure do
-  service_name = "user_modeling"
+  service_name = "personality_insights"
+
+  set :public_folder, 'public'
 
   endpoint = Hash.new
 
@@ -51,38 +54,22 @@ end
 
 
 get '/' do
+  set_locale(request)
   erb :index
 end
 
 
 post '/' do
-  @text = params[:content]
-
-  # build the request data with the text to analyze
-  content = {
-    :contentItems => [{
-      :userid => 'dummy',
-      :id => 'someid',
-      :sourceid => 'freetext',
-      :contenttype => 'text/plain',
-      :language => 'en',
-      :content => @text
-    }]
-  }
+  @text = params[:text]
+  @language = params[:language]
 
   begin
-    profile = getProfile(content)
-
-    tree    = JSON.load(profile)["tree"]
-    @traits = flatten_systemu_traits(tree)
-
-    @viz = getVisualization(profile)
-
+    return getProfile(@text, @language, I18n.locale)
   rescue Exception => e
     @error = 'Error processing the request, please try again later.'
     puts  e.message
     puts  e.backtrace.join("\n")
-    return erb :index
+    return @error
   end
 
   erb :index
@@ -92,10 +79,14 @@ end
 helpers do
 
   # Create a job
-  def getProfile(data)
+  def getProfile(data, language, locale)
     response = Excon.post(settings.endpoint + "api/v2/profile",
-                          :body => data.to_json,
-                          :headers => { "Content-Type" => "application/json" },
+                          :body => data,
+                          :headers => { 
+                            "Content-Type" => "text/plain",
+                            "Content-Language" => language,
+                            "Accept-Language" => locale
+                          },
                           :user => settings.username,
                           :password => settings.password)
 

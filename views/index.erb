@@ -1,57 +1,198 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= I18n.locale %>">
 <head>
-	<title>User Modeling Ruby Starter Application</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="css/watson-bootstrap-dark.css">
-	<link rel="stylesheet" href="css/style.css">
+<title><%= I18n.t("application.title") %></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="css/watson-bootstrap-dark.css">
+<link rel="stylesheet" href="css/banner.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<body>
-<div class="container">
-	<div class="header row">
-		<div class="col-lg-3">
-			<img src="images/app.png">
-		</div>
-		<div class="col-lg-8">
-			<h2>User Modeling Ruby Starter Application</h2>
-			<p>The User Modeling service uses linguistic analytics to
-				extract a spectrum of cognitive and social characteristics from the
-				text data that a person generates through text messages, tweets,
-				posts, and more.</p>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-6">
-			<h2>Try the service</h2>
-			<div class="well" style="height: 400px; overflow: auto;" >
-				<form method="post" class="form-horizontal" >
-					<fieldset>
-						<div class="form-group row">
-							<div class="col-lg-12">
-								<textarea id="textArea" name="content" rows="16"
-									placeholder="Please enter the text to analyze (minimum of 100 words)..."
-									required class="form-control"><%= @text %></textarea>
-							</div>
-						</div>
-						<div style="margin-bottom: 0px; padding-top: 5px;"
-							class="form-group row">
-							<div class="col-lg-4 col-lg-push-4">
-								<button type="button" onclick="window.location = './?reset=true'" class="btn btn-block">Clear</button>
-							</div>
-							<div class="col-lg-4 col-lg-push-4">
-								<button type="submit" class="btn btn-block">Analyze</button>
-							</div>
-						</div>
-					</fieldset>
-				</form>
-			</div>
-		</div>
-		<div class="col-lg-6">
+    <div class="row service-container">
+        <div class="col-lg-12 service-header">
+            <div class="row top-nav navbar-fixed-top">
+                <div class="container">
+                    <a
+                        href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/"
+                        class="top-nav--logo-link"><h3 class="heading left">
+                            IBM <span class="top-nav--logo-wdc">Watson Developer Cloud</span>
+                        </h3></a>
+                    <nav class="top-nav--nav">
+                        <li class="top-nav--nav-item"><a
+                            href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/services-catalog.html"><%= I18n.t("application.label.services") %></a></li>
+                        <li class="top-nav--nav-item"><a
+                            href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/"><%= I18n.t("application.label.docs") %></a></li>
+                        <li class="top-nav--nav-item"><a
+                            href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html"><%= I18n.t("application.label.appGallery") %></a></li>
+                        <li class="top-nav--nav-item"><a
+                            href="https://developer.ibm.com/watson/"><%= I18n.t("application.label.community") %></a></li>
+                    </nav>
+                </div>
+            </div>
+            <div class="row header">
+                <div class="container">
+                    <div
+                        class="avatar img-container col-lg-2 col-md-2 col-sm-2 hidden-xs">
+                        <img src="images/app.png" class="service-icon">
+                    </div>
+                    <div
+                        class="col-lg-10 col-md-10 col-sm-10 col-xs-12 dialog-description">
+                        <h1 style="font-size: 50px;" class="service-title"><%= I18n.t("application.name") %></h1>
+                        <p><%= I18n.t("service.description") %></p>
+                        <div class="resource">
+                            <img src="images/link.svg" class="link-icon"><strong><%= I18n.t("application.label.resources") %>:</strong>
+                        </div>
+                        <div class="resource-item-container">
+                            <a
+                                href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/apis/#!/personality-insights"
+                                class="resource-item"><%= I18n.t("application.label.apiOverview") %></a><a
+                                href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/personality-insights/"
+                                class="resource-item"><%= I18n.t("application.label.documentation") %></a><a
+                                href="https://github.com/watson-developer-cloud/personality-insights-nodejs"
+                                class="resource-item"><%= I18n.t("application.label.githubFork") %></a><a
+                                href="https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/personality-insights-nodejs.git"
+                                class="resource-item"><%= I18n.t("application.label.bluemixForkAndDeploy") %></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-xs-12">
+                <h2><%= I18n.t("application.input.title") %></h2>
+                <div class="well">
+                    <div class="form-group row">
+                        <div style="padding: 0px;" class="col-lg-12 col-xs-12">
+                            <label class="col-lg-6 col-md-6 col-xs-6 control-label"><%= I18n.t("application.label.chooseLanguage") %>:</label>
+                            <div class="col-lg-6 col-md-6 col-xs-6 sample-radio-list">
+                                <div class="sample-radio-container">
+                                    <label><input id="english_radio" type="radio"
+                                        name="sample_text" value="en" checked class="sample-radio"><%= I18n.t("application.label.english") %></label>
+                                </div>
+                                <div class="sample-radio-container">
+                                    <label><input type="radio" name="sample_text"
+                                        value="es" class="sample-radio"><%= I18n.t("application.label.spanish") %></label>
+                                </div>
+                            </div>
+                            <textarea rows="12" required="true" name="text"
+                                placeholder="<%= I18n.t("application.input.placeHolder") %>"
+                                class="content form-control"></textarea>
+                            <div class="text-right inputFootnote">
+                                <span class="wordsCount">0</span> <span class="small"></span><%= I18n.t("application.label.words") %></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: none; margin-bottom: 10px;"
+                        class="form-group row captcha">
+                        <div data-sitekey="6LcRbQkTAAAAAGUFVbnuqDfse-XZASLZwoC34oJV"
+                            class="col-lg-12 col-md-12 col-xs-12 g-recaptcha"></div>
+                    </div>
+                    <div class="form-group row buttons-container">
+                        <div class="col-lg-4 col-xs-4">
+                            <button type="button" class="btn btn-block clear-btn"><%= I18n.t("application.input.clear") %></button>
+                        </div>
+                        <div class="col-lg-4 col-lg-push-4 col-xs-4 col-xs-push-4">
+                            <button type="button" class="btn btn-block analysis-btn"><%= I18n.t("application.input.analyze") %></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-xs-12">
+                <div style="display: none;"
+                    class="form-group row loading text-center loading">
+                    <h2>&nbsp;</h2>
+                    <img src="images/watson.gif">
+                </div>
+                <div style="display: none;" class="form-group row error">
+                    <h2>&nbsp;</h2>
+                    <div class="well">
+                        <p class="errorMsg"></p>
+                    </div>
+                </div>
+                <div style="display: none;" class="results">
+                    <h2><%= I18n.t("application.label.yourPersonality") %>*</h2>
+                    <div class="well">
+                        <div class="summary-div"></div>
+                        <div style="color: gray" class="text-right">
+                            <em class="small">*<%= I18n.t("application.label.comparedFootnote") %></em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;" class="results">
+                <div class="row">
+                    <div class="col-lg-5 col-md-12 col-xs-12">
+                        <h3><%= I18n.t("application.label.personalityData") %></h3>
+                        <div style="display: none;" class="col555px well traits"></div>
+                    </div>
+                    <div class="col-lg-7 col-xs-12 col-md-12">
+                        <h3><%= I18n.t("application.label.personalityVisualizationData") %></h3>
+                        <div id="vizcontainer" class="well"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden">
+                <div id="header-template">
+                    <div class="row theader">
+                        <div class="col-lg-5 col-xs-5">
+                            <span><%= I18n.t("application.label.name") %></span>
+                        </div>
+                        <div class="col-lg-7 col-xs-7 text-right">
+                            <span><%= I18n.t("application.label.value") %> ± <%= I18n.t("application.label.samplingError") %></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="trait-template">
+                    <div class="row">
+                        <div class="tname col-lg-7 col-xs-7">
+                            <span></span>
+                        </div>
+                        <div class="tvalue col-lg-5 col-xs-5 text-right">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="model-template">
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12 text-center">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="js/demo.js"></script>
+    <script type="text/javascript" src="js/personality.js"></script>
+    <script type="text/javascript" src="js/string-utils.js"></script>
+    <script type="text/javascript" src="js/i18n.js"></script>
+    <script type="text/javascript" src="js/textsummary.js"></script>
+    <script type="text/javascript">
+        textSummary.init('json');
+    </script>
+    
+<% if defined? @error %>
+    <script type="text/javascript">
+        console.log("Error: <%= @error %>");
+        window.onload = function() {
+            showError(<%= @error %>);
+        };
+    </script>
+<% end %>
+
+</body>
+</html>
+
+<!-- required class="form-control"><%= @text %></textarea> -->
+<!--
 			<h2>Output</h2>
 			<div class="row">
 				<div class="col-lg-12">
@@ -87,14 +228,12 @@
 		</div>
 	<% end %>
 </div>
-<script type="text/javascript" src="js/css_browser_selector.js"></script>
-<script type="text/javascript" src="js/dummy-text.js"></script>
-<% unless defined? @text or params[:reset] %>
+
+-->
+<!--<% unless defined? @text or params[:reset] %>
 	<script type="text/javascript">
 		window.onload = function() {
 			document.getElementById('textArea').value = dummy_text;
 		};
 	</script>
-<% end %>
-</body>
-</html>
+<% end %>-->
