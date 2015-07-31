@@ -1,6 +1,11 @@
+---
+declared-services:
+  personality-insights-service-standard:
+    label: personality_insights
+    plan: standard
 applications:
 - services:
-  - um-service
-  name: um-ruby
+  - personality-insights-service-standard
+  name: personality-insights-ruby
   path: .
   memory: 256M
