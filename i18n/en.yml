@@ -33,6 +33,10 @@ en: {
             "clear"        : "Clear",
             "analyze"      : "Analyze",
             "title"        : "Input Text"
+        },
+        
+        "error" : {
+            "processingRequestError" : "Error processing the request, please try again later"
         }
     },
     "service" : {

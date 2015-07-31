@@ -32,6 +32,10 @@ es: {
             "clear": "Borrar",
             "analyze": "Analizar",
             "title":"Texto de entrada"
+        },
+        
+        "error" : {
+            "processingRequestError" : "Error al procesar el requerimiento, intenta más tarde"
         }
     },
     "service": {
