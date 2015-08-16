@@ -48,7 +48,7 @@ See the full [Getting Started][getting_started] documentation for more details, 
 
 The application uses [Ruby](https://www.ruby-lang.org/) and [Bundler](http://bundler.io/) so you will have to download and install them as part of the setps below.
 
-1. Copy the credentials from your `personality-insights-service` service in Bluemix to `app.js`, you can see the credentials using:
+1. Copy the credentials from your `personality-insights-service` service in Bluemix to `app.rb`, you can see the credentials using:
 
     ```sh
     $ cf env <application-name>
