@@ -36,7 +36,7 @@ class PersonalityInsights
     headers[:acceptLanguage ] ||= "en"
 
     # Request the profile
-    response = Excon.post(@endpoint + "/api/v2/profile",
+    response = Excon.post(@endpoint + "/v2/profile",
                         :body     => data,
                         :headers  => {
                           "Content-Type"     => headers[:contentType],
