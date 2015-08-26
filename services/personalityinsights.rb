@@ -1,5 +1,5 @@
 #
-# Copyright IBM Corp. 2014
+# Copyright IBM Corp. 2014, 2015
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,35 +18,35 @@ require 'excon'
 
 # Personality Insights Service
 class PersonalityInsights
-  
+
   attr_accessor :endpoint, :username, :password
-  
+
   def initialize(credentials)
-    @endpoint = credentials["url"].end_with?("/") ? credentials["url"] : credentials["url"] + "/"
+    @endpoint = credentials["url"] ? credentials["url"] : "https://gateway.watsonplatform.net/personality-insights/api"
     @username = credentials["username"]
     @password = credentials["password"]
   end
-  
+
   # Send a profile request to Personality
   # Insights service
   def profile(data, headers)
     # Set default headers
-    headers[:contentType    ] ||= "text/plain"
+    headers[:contentType    ] ||= "text/plain;charset=UTF-8"
     headers[:contentLanguage] ||= "en"
     headers[:acceptLanguage ] ||= "en"
-    
-    # Request the profile 
-    response = Excon.post(@endpoint + "api/v2/profile",
+
+    # Request the profile
+    response = Excon.post(@endpoint + "/api/v2/profile",
                         :body     => data,
-                        :headers  => { 
+                        :headers  => {
                           "Content-Type"     => headers[:contentType],
                           "Content-Language" => headers[:contentLanguage],
                           "Accept-Language"  => headers[:acceptLanguage]
                         },
                         :user     => @username,
                         :password => @password)
-    
+
     response.body
   end
-  
+
 end
