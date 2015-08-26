@@ -1,5 +1,5 @@
 #
-# Copyright IBM Corp. 2014
+# Copyright IBM Corp. 2014, 2015
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,8 +24,7 @@ configure do
 
   set :public_folder, 'public'
 
-  set :credentials, { 
-    "url"      => "<service_url>",
+  set :credentials, {
     "username" => "<service_username>",
     "password" => "<service_password>"
   }
@@ -39,8 +38,8 @@ configure do
     end
   end
 
-  set :personality_insights, PersonalityInsights.new(settings.credentials)  
-  
+  set :personality_insights, PersonalityInsights.new(settings.credentials)
+
   puts "endpoint = #{settings.personality_insights.endpoint}"
   puts "username = #{settings.personality_insights.username}"
 end
@@ -55,7 +54,7 @@ end
 post '/' do
   @text = params[:text]
   @language = params[:language]
-  
+
   begin
     headers = {
       :contentLanguage => @language,
@@ -71,5 +70,3 @@ post '/' do
 
   return responseData
 end
-
-
